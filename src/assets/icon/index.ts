@@ -1,0 +1,7 @@
+export { AddIcon } from './add-icon'
+export { CloseIcon } from './close-icon'
+export { DogsIcon } from './dogs-icon'
+export { FeedIcon } from './feed-icon'
+export { StatisticIcon } from './statistic-icon'
+export { UserIcon } from './user-icon'
+export { ViewIcon } from './view-icon'
