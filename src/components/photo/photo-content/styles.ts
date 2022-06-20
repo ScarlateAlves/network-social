@@ -30,6 +30,7 @@ export const ContainerPhotoStyles = styled.div`
 
 export const ContainerPhotoItem = styled.div`
   grid-row: 1/4;
+  position: relative;
 
   @media (max-width: 64rem) {
     grid-row: 1;
@@ -45,5 +46,23 @@ export const ViewPhotoStyles = styled.div`
 `
 
 export const AtributesStyles = styled.div`
-  color: black;
+  font-weight: 700;
+  display: flex;
+  gap: 2rem;
+  font-size: 1rem;
+`
+
+export const Close = styled.div`
+  border: 1px solid #666;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  background: #eee;
+  border-radius: 0.2rem;
+  color: #666;
 `

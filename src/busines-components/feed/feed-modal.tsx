@@ -8,21 +8,30 @@ import { FeedPhotosItensProps } from '../../types/feed'
 import { Modal } from './styles'
 
 interface ModalPhoto {
-  modalPhoto?: FeedPhotosItensProps
+  modalPhoto?: FeedPhotosItensProps | null
+  setModalPhoto?: React.Dispatch<
+    React.SetStateAction<FeedPhotosItensProps | undefined | null>
+  >
 }
-export const FeedModal = ({ modalPhoto }: ModalPhoto) => {
+export const FeedModal = ({ modalPhoto, setModalPhoto }: ModalPhoto) => {
   const { data, isError, isLoading, isSuccess, mutate } = useFeedPhotoItem()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleClickModal = (e: any) => {
+    if (e.target === e.currentTarget) {
+      setModalPhoto && setModalPhoto(null)
+    }
+  }
   useEffect(() => {
     mutate(modalPhoto?.id)
   }, [modalPhoto?.id])
 
   return (
     <>
-      <Modal>
+      <Modal onClick={handleClickModal}>
         <Choose>
           <Choose.When condition={isSuccess}>
-            <PhotoContent props={data} />
+            <PhotoContent props={data} setModalPhoto={setModalPhoto} />
           </Choose.When>
           <Choose.When condition={isLoading}>
             <Loading />

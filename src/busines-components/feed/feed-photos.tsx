@@ -9,7 +9,7 @@ import { ContainerCard } from './styles'
 
 interface FeedPhotosModal {
   setModalPhoto?: React.Dispatch<
-    React.SetStateAction<FeedPhotosItensProps | undefined>
+    React.SetStateAction<FeedPhotosItensProps | undefined | null>
   >
 }
 

@@ -6,6 +6,7 @@ export const Header = styled.header`
   width: 100%;
   background: white;
   padding: 0 4rem;
+  z-index: 1;
 `
 
 export const NavContainer = styled.nav`

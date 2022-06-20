@@ -6,7 +6,7 @@ import { Acessos, Card, ImageCard } from './styles'
 interface FeedItem {
   props: FeedPhotosItensProps
   setModalPhoto?: React.Dispatch<
-    React.SetStateAction<FeedPhotosItensProps | undefined>
+    React.SetStateAction<FeedPhotosItensProps | undefined | null>
   >
 }
 

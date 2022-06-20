@@ -8,7 +8,7 @@ export interface FeedPhotosItensProps {
   acessos: string
   author: string
   date: string
-  id?: number | undefined
+  id: number
   idade: string
   peso: string
   src?: string
