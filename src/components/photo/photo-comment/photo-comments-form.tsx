@@ -34,7 +34,7 @@ export const PhotoCommentsForm = ({ setComment, id }: Set) => {
     <>
       <form onSubmit={handleSubmit(onSubmitComment)}>
         <Flex
-          flexDirection="column"
+          style={{ gap: '6px' }}
           m="2rem"
           justifyContent="space-between"
           alignItems="self-end"
@@ -43,7 +43,7 @@ export const PhotoCommentsForm = ({ setComment, id }: Set) => {
             placeholder="Adicione um comentario"
             {...register('comment')}
           />
-          <Button mt="0.5rem" height="2.5rem" width="5rem">
+          <Button height="3.5rem" width="5.5rem">
             Enviar
           </Button>
         </Flex>

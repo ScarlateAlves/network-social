@@ -1,7 +1,9 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
+import { Choose } from 'react-extras'
 import { Flex, Text } from 'rebass'
 import { ViewIcon } from '../../../assets/icon'
+import { AuthContext } from '../../../hooks/context/auth-context'
 import {
   FeedPhotosItemResponse,
   FeedPhotosItensProps,
@@ -9,6 +11,7 @@ import {
 } from '../../../types/feed'
 import { Heading } from '../../heading'
 import { PhotoComment } from '../photo-comment'
+import { PhotoDelete } from '../photo-delete'
 import {
   AtributesStyles,
   ContainerPhotoItem,
@@ -27,6 +30,9 @@ interface PhotoContentProps {
 
 export const PhotoContent = ({ props, setModalPhoto }: PhotoContentProps) => {
   const comments = props?.comments as FeePhotoComments[]
+
+  const { user } = useContext(AuthContext)
+  const seeButton = user?.username === props?.photo.author ? true : false
   return (
     <>
       <ContainerPhotoStyles>
@@ -37,9 +43,16 @@ export const PhotoContent = ({ props, setModalPhoto }: PhotoContentProps) => {
         <PhotoDetailStyles>
           <Flex flexDirection="column">
             <Flex justifyContent="space-between">
-              <Link href={`/profile/${props?.photo.author}`}>
-                <Text> @{props?.photo?.author}</Text>
-              </Link>
+              <Choose>
+                <Choose.When condition={seeButton}>
+                  <PhotoDelete id={props?.photo.id} />
+                </Choose.When>
+                <Choose.Otherwise>
+                  <Link href={`/profile/${props?.photo.author}`}>
+                    <Text> @{props?.photo?.author}</Text>
+                  </Link>
+                </Choose.Otherwise>
+              </Choose>
               <ViewPhotoStyles>
                 <ViewIcon /> {props?.photo.acessos}
               </ViewPhotoStyles>
@@ -47,7 +60,6 @@ export const PhotoContent = ({ props, setModalPhoto }: PhotoContentProps) => {
             <Link href={`/foto/${props?.photo.id}`}>
               <Heading>{props?.photo.author}</Heading>
             </Link>
-
             <AtributesStyles>
               <Text>| {props?.photo.peso} kg</Text>
               <Text>| {props?.photo.idade} anos</Text>

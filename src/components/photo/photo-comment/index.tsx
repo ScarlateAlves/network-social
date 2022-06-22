@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Choose, For } from 'react-extras'
 import { Flex, Text } from 'rebass'
 import { AuthContext } from '../../../hooks/context/auth-context'
@@ -14,12 +14,18 @@ interface CommnetsProps {
 
 export const PhotoComment = ({ id, comments }: CommnetsProps) => {
   const [comment, setComment] = useState<FeePhotoComments[]>(() => comments)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const commentSection = useRef<any>(null)
   const { user } = useContext(AuthContext)
 
+  /*  useEffect(() => {
+    commentSection.current.scrollTop = commentSection.current.scrollHeight
+  }, [comment])
+*/
   return (
     <Choose>
       <Choose.When condition={Boolean(user)}>
-        <Ul>
+        <Ul ref={commentSection}>
           <For
             of={comment}
             render={(item: FeePhotoComments, index: number) => (
